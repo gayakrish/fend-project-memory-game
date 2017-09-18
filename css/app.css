@@ -66,19 +66,35 @@ h1 {
 }
 
 .deck .card.open {
-    transform: rotateY(0);
+    transform: rotateY(180);
     background: #02b3e4;
     cursor: default;
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    position: relative;
+    pointer-events: none;
 }
 
 .deck .card.show {
     font-size: 33px;
+    pointer-events: none;
 }
 
 .deck .card.match {
     cursor: default;
     background: #02ccba;
     font-size: 33px;
+    pointer-events: none;
+}
+
+.card.open.mismatch {
+    cursor: default;
+    transition: 0.6s;
+    -ms-transform: rotate(-10deg); /* IE 9 */
+    -webkit-transform: rotate(-10deg); /* Safari */
+    transform: rotate(-10deg);
+    background: red;
+    pointer-events: none;
 }
 
 /*

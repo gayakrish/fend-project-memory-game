@@ -1,7 +1,123 @@
 /*
  * Create a list that holds all of your cards
  */
+let cardsArray = [];
+let openCards = [];
+let openCardNames = [];
+let matchCount = 0;
+let moveCount = 0;
 
+let star = 16;
+
+resetBoard();
+
+function setUpListener() {
+ 	for(let i = 0; i < cardsArray.length; i++) {
+ 		$(cardsArray[i]).one("click", clickCard);
+ 	}
+}
+
+function resetBoard() {
+ 	cardsArray.length = 0;
+ 	var output = '';
+ 	matchCount = 0;
+
+ 	resetMoveCount();
+
+ 	cardsArray = shuffle($(".deck").children().toArray());
+	for(let i = 0; i < cardsArray.length; i++) {
+		var className = $(cardsArray[i]).children().attr("class");
+		output += `<li class = "card"> <i class = "${className}"> </i> </li>`;
+	}
+
+	$(".deck").html(output);
+	cardsArray =  $(".deck").children().toArray();
+ 	setUpListener();
+
+    $('.restart').on("click", resetBoard);
+}
+
+function clickCard(event) {
+
+	if(openCards.length < 2 && openCardNames.length < 2) {
+
+		setMoveCount();
+
+		openCards.push($(event.target));
+		openCardNames.push($(event.target).children().attr('class').substring(3));
+		$(event.target).toggleClass('open show');
+
+		if(openCards.length === 2) {
+
+			var card1 = openCards[0];
+			var card2 = openCards[1];
+
+			if (openCardNames[0] === openCardNames[1]) {
+				console.log("matched");
+				setCardMatch(card1, card2);
+				checkBoardWin();
+				clearOpenCards();
+			} else {
+				console.log("cards do not match");
+				setCardMismatch(card1, card2);
+				setTimeout(hideCards, 400);
+			}
+		}
+	}
+}
+
+function setMoveCount() {
+	moveCount += 1;
+	$('.moves').text(moveCount);
+}
+
+function resetMoveCount() {
+	moveCount = 0;
+	$('.moves').text('');
+}
+
+function setStar() {
+}
+
+function resetStar() {
+
+}
+
+
+function setCardMatch(card1, card2) {
+	matchCount += 2;
+	$(card1).addClass('match');
+	$(card2).addClass('match');
+	$(card1).parent().off();
+	$(card2).parent().off();
+}
+
+function checkBoardWin() {
+	setTimeout(function() {
+		if(matchCount === cardsArray.length) {
+			alert("Congratulations!!! You've cleared the board.");
+		}
+	}, 400);
+}
+
+function setCardMismatch(card1, card2) {
+	$(card1).addClass('mismatch');
+	$(card2).addClass('mismatch');
+	$(card1).one('click', clickCard);
+	$(card2).one('click', clickCard);
+}
+
+
+function hideCards() {
+	$(openCards[0]).removeClass('open show mismatch');
+	$(openCards[1]).removeClass('open show mismatch');
+	clearOpenCards();
+}
+
+ function clearOpenCards() {
+ 	openCards.length = 0;
+ 	openCardNames.length = 0;
+ }
 
 /*
  * Display the cards on the page
@@ -10,7 +126,7 @@
  *   - add each card's HTML to the page
  */
 
-// Shuffle function from http://stackoverflow.com/a/2450976
+// Shuffle function from http://stackoverflow.com/a/245097'
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -21,10 +137,8 @@ function shuffle(array) {
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
     }
-
     return array;
 }
-
 
 /*
  * set up the event listener for a card. If a card is clicked:
@@ -36,3 +150,5 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+
+
