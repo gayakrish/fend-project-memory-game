@@ -80,11 +80,24 @@ h1 {
     pointer-events: none;
 }
 
+@keyframes pound {
+    from {
+        transform: none;
+    }
+    50% {
+        transform: scale(1.4);
+    }
+    to {
+        transform: none;
+    }
+}
+
 .deck .card.match {
     cursor: default;
     background: #02ccba;
     font-size: 33px;
     pointer-events: none;
+    animation: pound .5s .5s;
 }
 
 .card.open.mismatch {

@@ -7,7 +7,9 @@ let openCardNames = [];
 let matchCount = 0;
 let moveCount = 0;
 
-let star = 16;
+const superStar = 16;
+const avgStar = 24;
+let starCount = 3;
 
 resetBoard();
 
@@ -23,6 +25,7 @@ function resetBoard() {
  	matchCount = 0;
 
  	resetMoveCount();
+ 	resetStar();
 
  	cardsArray = shuffle($(".deck").children().toArray());
 	for(let i = 0; i < cardsArray.length; i++) {
@@ -39,9 +42,12 @@ function resetBoard() {
 
 function clickCard(event) {
 
+	event.stopPropagation();
+
 	if(openCards.length < 2 && openCardNames.length < 2) {
 
 		setMoveCount();
+		setStar();
 
 		openCards.push($(event.target));
 		openCardNames.push($(event.target).children().attr('class').substring(3));
@@ -60,9 +66,15 @@ function clickCard(event) {
 			} else {
 				console.log("cards do not match");
 				setCardMismatch(card1, card2);
-				setTimeout(hideCards, 400);
+				clearOpenCards();
+				setTimeout(function() {
+					$(card1).removeClass('open show mismatch');
+					$(card2).removeClass('open show mismatch');
+				}, 400);
 			}
 		}
+	} else {
+		clearOpenCards();
 	}
 }
 
@@ -77,10 +89,21 @@ function resetMoveCount() {
 }
 
 function setStar() {
+	if(moveCount > superStar) {
+		if ((moveCount < avgStar) && (starCount === 3)) {
+			starCount = 2;
+			$('#star1').hide();
+		} else if((moveCount > avgStar) && (starCount === 2)) {
+			starCount = 1;
+			$('#star2').hide();
+		}
+	}
 }
 
 function resetStar() {
-
+	starCount = 3;
+	$('#star1').show();
+	$('#star2').show();
 }
 
 
@@ -95,7 +118,8 @@ function setCardMatch(card1, card2) {
 function checkBoardWin() {
 	setTimeout(function() {
 		if(matchCount === cardsArray.length) {
-			alert("Congratulations!!! You've cleared the board.");
+			//alert("Congratulations!!! You've cleared the board.");
+			window.location.href = `win.html?moves=${moveCount}&stars=${starCount}`;
 		}
 	}, 400);
 }
@@ -150,5 +174,3 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
-
-
