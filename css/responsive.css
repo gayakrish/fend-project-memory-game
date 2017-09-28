@@ -1,0 +1,51 @@
+@media screen and (max-width: 750px) {
+  .container {
+      width: 300px;
+      display: block;
+      margin: auto;
+      box-sizing: border-box;
+  }
+
+  h1 {
+      font-size: 20px;
+  }
+
+  .container .score-panel {
+      width: 300px;
+      margin: auto;
+      padding: 0;
+  }
+
+  .container .deck {
+      width: 300px;
+      min-height: 100px;
+      margin: auto;
+      padding: 10px;
+  }
+
+  .deck .card {
+      width: 50px;
+      height: 50px;
+      margin: 5px 10px;
+  }
+
+  .deck .card.show {
+      font-size: 25px;
+  }
+
+  .container .score-panel {
+      font-size: 10px;
+      width: 225px;
+      margin: 10px 10px;
+      text-align: center;
+  }
+
+  .score-panel .stars {
+      margin: 0 5px 0 5px;
+  }
+
+  .container .score-panel .timer {
+      margin-right: 0;
+      padding-right: 0;
+  }
+}

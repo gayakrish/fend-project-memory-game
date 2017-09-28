@@ -17,7 +17,9 @@ body {
 }
 
 body {
-    background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
+    background: #ffffff url('../img/geometry2.png');
+    /* Background pattern from Subtle Patterns */
+
     font-family: 'Coda', cursive;
 }
 
@@ -31,12 +33,12 @@ body {
 h1 {
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
+    text-align: center;
 }
 
 /*
  * Styles for the deck of cards
  */
-
 .deck {
     width: 660px;
     min-height: 680px;
@@ -103,8 +105,12 @@ h1 {
 .card.open.mismatch {
     cursor: default;
     transition: 0.6s;
-    -ms-transform: rotate(-10deg); /* IE 9 */
-    -webkit-transform: rotate(-10deg); /* Safari */
+    -ms-transform: rotate(-10deg);
+    /* IE 9 */
+
+    -webkit-transform: rotate(-10deg);
+    /* Safari */
+
     transform: rotate(-10deg);
     background: red;
     pointer-events: none;
@@ -113,7 +119,6 @@ h1 {
 /*
  * Styles for the Score Panel
  */
-
 .score-panel {
     text-align: left;
     width: 345px;
@@ -130,6 +135,11 @@ h1 {
 .score-panel .stars li {
     list-style: none;
     display: inline-block;
+}
+
+.score-panel .timer {
+    margin: 0 5px;
+    padding-left: 25px;
 }
 
 .score-panel .restart {

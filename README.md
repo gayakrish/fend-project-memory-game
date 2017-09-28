@@ -1,20 +1,13 @@
-# Memory Game Project
+# Matching Cards Game
+This is a single player game where the player has to turn over a pair of matching cards from the deck of cards. It uses fonts as cards.
 
-## Table of Contents
+### How to Play ###
+1. Player starts the game by clicking two cards on the deck.
+2. If they match, they will remain open. Otherwise, they close down.
+3. Player keeps flipping the cards till all the cards are matched and no more cards to flip.
+4. The number of stars is the Player's star rating, which is based on the number of moves taken to finish the game.
+5. The timer gives the time taken to complete the game.
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+### Testing ###
 
-## Instructions
-
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
-
-To get started, open `js/app.js` and start building out the app's functionality
-
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
-
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+This game has been tested on the following browsers: Google Chrome, Mozilla Firefox, Opera, Microsoft Edge. Chrome Dev Tools has been used to emulate the different screen sizes for testing the game.
