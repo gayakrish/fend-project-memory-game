@@ -1,5 +1,5 @@
 # Matching Cards Game
-This is a single player game where the player has to turn over a pair of matching cards from the deck of cards. It uses fonts as cards. Live version is (here)[https://gayakrish.github.io/fend-project-memory-game/]
+This is a single player game where the player has to turn over a pair of matching cards from the deck of cards. It uses fonts as cards. Live version is [here](https://gayakrish.github.io/fend-project-memory-game/)
 
 ### How to Play ###
 1. Player starts the game by clicking two cards on the deck.
